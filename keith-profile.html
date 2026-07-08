@@ -1,0 +1,305 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Keith's Portfolio</title>
+    <meta name="description" content="Keith's personal portfolio showcasing software development skills, projects, and contact information.">
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700&display=swap');
+
+        :root {
+            --bg-color: #0f172a; /* Slate 900 */
+            --text-main: #f8fafc; /* Slate 50 */
+            --text-muted: #94a3b8; /* Slate 400 */
+            --accent-1: #3b82f6; /* Blue 500 */
+            --accent-2: #8b5cf6; /* Violet 500 */
+            --card-bg: rgba(30, 41, 59, 0.7); /* Slate 800 with opacity for glass effect */
+            --card-border: rgba(255, 255, 255, 0.1);
+        }
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: var(--bg-color);
+            color: var(--text-main);
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            background-image: 
+                radial-gradient(circle at 15% 50%, rgba(59, 130, 246, 0.15), transparent 25%),
+                radial-gradient(circle at 85% 30%, rgba(139, 92, 246, 0.15), transparent 25%);
+            background-attachment: fixed;
+            overflow-x: hidden;
+            padding: 2rem 0;
+        }
+
+        .container {
+            max-width: 800px;
+            width: 90%;
+            margin: 0 auto;
+            padding: 3rem;
+            background: var(--card-bg);
+            backdrop-filter: blur(16px);
+            -webkit-backdrop-filter: blur(16px);
+            border: 1px solid var(--card-border);
+            border-radius: 24px;
+            box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.5);
+            transform: translateY(20px);
+            opacity: 0;
+            animation: fadeIn 0.8s ease-out forwards;
+        }
+
+        @keyframes fadeIn {
+            to {
+                transform: translateY(0);
+                opacity: 1;
+            }
+        }
+
+        header {
+            text-align: center;
+            margin-bottom: 3rem;
+        }
+
+        .profile-img-container {
+            width: 150px;
+            height: 150px;
+            margin: 0 auto 1.5rem auto;
+            border-radius: 50%;
+            padding: 4px;
+            background: linear-gradient(135deg, var(--accent-1), var(--accent-2));
+            box-shadow: 0 10px 25px -5px rgba(59, 130, 246, 0.5);
+        }
+
+        .profile-img {
+            width: 100%;
+            height: 100%;
+            border-radius: 50%;
+            background-color: var(--bg-color);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 4rem;
+            font-weight: bold;
+            color: var(--text-main);
+            background-clip: padding-box;
+        }
+
+        h1 {
+            font-size: 2.5rem;
+            font-weight: 700;
+            margin-bottom: 0.5rem;
+            background: linear-gradient(to right, #60a5fa, #c084fc);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        h2 {
+            font-size: 1.25rem;
+            font-weight: 400;
+            color: var(--text-muted);
+        }
+
+        .section {
+            margin-bottom: 2.5rem;
+        }
+
+        .section-title {
+            font-size: 1.5rem;
+            font-weight: 600;
+            margin-bottom: 1rem;
+            position: relative;
+            display: inline-block;
+        }
+
+        .section-title::after {
+            content: '';
+            position: absolute;
+            left: 0;
+            bottom: -4px;
+            width: 100%;
+            height: 2px;
+            background: linear-gradient(to right, var(--accent-1), transparent);
+        }
+
+        p {
+            line-height: 1.7;
+            color: var(--text-muted);
+            margin-bottom: 1rem;
+        }
+
+        .skills {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.75rem;
+        }
+
+        .skill-tag {
+            background: rgba(255, 255, 255, 0.05);
+            border: 1px solid var(--card-border);
+            padding: 0.5rem 1rem;
+            border-radius: 9999px;
+            font-size: 0.875rem;
+            font-weight: 500;
+            transition: all 0.3s ease;
+            cursor: pointer;
+        }
+
+        .skill-tag:hover {
+            background: rgba(59, 130, 246, 0.1);
+            border-color: var(--accent-1);
+            color: #60a5fa;
+            transform: translateY(-2px);
+        }
+
+        .projects {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 1.5rem;
+        }
+
+        .project-card {
+            background: rgba(0, 0, 0, 0.2);
+            border: 1px solid var(--card-border);
+            border-radius: 16px;
+            padding: 1.5rem;
+            transition: all 0.3s ease;
+        }
+
+        .project-card:hover {
+            transform: translateY(-5px);
+            border-color: rgba(139, 92, 246, 0.4);
+            box-shadow: 0 10px 20px -10px rgba(139, 92, 246, 0.3);
+        }
+
+        .project-title {
+            font-size: 1.25rem;
+            font-weight: 600;
+            margin-bottom: 0.5rem;
+            color: #e2e8f0;
+        }
+
+        .project-desc {
+            font-size: 0.875rem;
+            margin-bottom: 0;
+        }
+
+        .social-links {
+            display: flex;
+            justify-content: center;
+            gap: 1.5rem;
+            margin-top: 3rem;
+        }
+
+        .social-link {
+            color: var(--text-muted);
+            text-decoration: none;
+            font-size: 1.5rem;
+            transition: all 0.3s ease;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            width: 48px;
+            height: 48px;
+            border-radius: 50%;
+            background: rgba(255, 255, 255, 0.03);
+            border: 1px solid var(--card-border);
+        }
+
+        .social-link:hover {
+            color: white;
+            background: var(--accent-1);
+            border-color: var(--accent-1);
+            transform: translateY(-3px) rotate(8deg);
+            box-shadow: 0 10px 20px -5px rgba(59, 130, 246, 0.4);
+        }
+
+        @media (max-width: 600px) {
+            .container {
+                padding: 2rem;
+            }
+            h1 {
+                font-size: 2rem;
+            }
+        }
+    </style>
+    <!-- FontAwesome for icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+</head>
+<body>
+
+    <main class="container">
+        <header>
+            <div class="profile-img-container">
+                <div class="profile-img">K</div>
+            </div>
+            <h1>Keith</h1>
+            <h2>Software Developer & Designer</h2>
+        </header>
+
+        <section class="section">
+            <h3 class="section-title">About Me</h3>
+            <p>Hello! I'm Keith, a passionate software developer focused on creating intuitive, dynamic, and beautiful user experiences. I thrive on bringing ideas to life through elegant code and modern design principles. Constantly learning and exploring new technologies.</p>
+        </section>
+
+        <section class="section">
+            <h3 class="section-title">Skills</h3>
+            <div class="skills">
+                <div class="skill-tag">HTML5 & CSS3</div>
+                <div class="skill-tag">JavaScript (ES6+)</div>
+                <div class="skill-tag">React / Next.js</div>
+                <div class="skill-tag">UI/UX Design</div>
+                <div class="skill-tag">Node.js</div>
+                <div class="skill-tag">Tailwind CSS</div>
+                <div class="skill-tag">Git & GitHub</div>
+            </div>
+        </section>
+
+        <section class="section">
+            <h3 class="section-title">Projects</h3>
+            <div class="projects">
+                <div class="project-card">
+                    <h4 class="project-title">E-Commerce Platform</h4>
+                    <p class="project-desc">A full-stack application with real-time inventory, secure payments, and a responsive glassmorphism UI.</p>
+                </div>
+                <div class="project-card">
+                    <h4 class="project-title">Interactive Dashboard</h4>
+                    <p class="project-desc">Data visualization tool built with React and D3.js, featuring customizable widgets and dark mode.</p>
+                </div>
+            </div>
+        </section>
+
+        <nav class="social-links" aria-label="Social media links">
+            <a href="#" class="social-link" title="GitHub"><i class="fab fa-github"></i><span class="sr-only" style="display:none;">GitHub</span></a>
+            <a href="#" class="social-link" title="LinkedIn"><i class="fab fa-linkedin-in"></i><span class="sr-only" style="display:none;">LinkedIn</span></a>
+            <a href="#" class="social-link" title="Twitter"><i class="fab fa-twitter"></i><span class="sr-only" style="display:none;">Twitter</span></a>
+            <a href="#" class="social-link" title="Email"><i class="fas fa-envelope"></i><span class="sr-only" style="display:none;">Email</span></a>
+        </nav>
+    </main>
+
+    <script>
+        // Add subtle interactive effect to cards
+        document.querySelectorAll('.project-card').forEach(card => {
+            card.addEventListener('mousemove', e => {
+                const rect = card.getBoundingClientRect();
+                const x = e.clientX - rect.left;
+                const y = e.clientY - rect.top;
+                
+                card.style.background = `radial-gradient(circle at ${x}px ${y}px, rgba(59, 130, 246, 0.15), rgba(0, 0, 0, 0.2))`;
+            });
+            
+            card.addEventListener('mouseleave', () => {
+                card.style.background = 'rgba(0, 0, 0, 0.2)';
+            });
+        });
+    </script>
+</body>
+</html>
